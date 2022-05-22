@@ -10,17 +10,17 @@ pipeline {
         stage('unit testing') {
             steps {
                 sh '''npm test
-                    echo "Test Coverage results"
-                    nyc node index.js &
-                    sleep 2
-                    PID=$!
-                    kill $PID'''
+                      echo "Test Coverage results"
+                      nyc node index.js &
+                      sleep 2
+                      PID=$!
+                      kill $PID'''
             }
         }
         stage('Docker build & Push') {
             steps {
                 sh '''sudo docker build -t aravindavvaru/reqres .
-                sudo docker push aravindavvaru/reqres'''
+                      sudo docker push aravindavvaru/reqres'''
             }
         }
         stage('Deploy') {
