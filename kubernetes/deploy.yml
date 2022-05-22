@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reqres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reqres
+  template:
+    metadata:
+      labels:
+        app: reqres
+    spec:
+      containers:
+        - name: echo-server
+          image: docker.io/aravindavvaru/reqres
+          imagePullPolicy: Always
+          ports:
+            - name: http-port
+              containerPort: 8080
+              hostPort: 8080
